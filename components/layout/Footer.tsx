@@ -37,7 +37,7 @@ const companyLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-dark text-white">
       {/* Footer columns */}
       <div className="py-16">
         <Container>
@@ -157,7 +157,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/20 py-6">
+      <div className="border-t border-white/10 py-6">
         <Container>
           <div className="flex flex-col items-center justify-between gap-3 text-xs text-white/50 sm:flex-row">
             <p>&copy; {new Date().getFullYear()} {SITE_NAME}. Sva prava zadrzana.</p>
