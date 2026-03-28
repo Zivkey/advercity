@@ -93,9 +93,9 @@ export default function RadoviPage() {
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
                       {item.category}
                     </p>
-                    <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+                    <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
                       {item.client}
-                    </h2>
+                    </h3>
                     <p className="mt-2 text-sm text-white/70">{item.title}</p>
                   </div>
                 </div>

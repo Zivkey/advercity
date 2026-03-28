@@ -99,31 +99,33 @@ export default function BlogPage() {
         <Container>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {POSTS.map((post) => (
-              <article key={post.slug} className="group">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="mt-5">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-text-muted">{post.date}</span>
+              <Link key={post.slug} href={`/blog/${post.slug}/`} className="group block">
+                <article>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
-                  <h2 className="mt-2 text-lg font-bold leading-tight text-dark group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                    {post.excerpt}
-                  </p>
-                </div>
-              </article>
+                  <div className="mt-5">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-text-muted">{post.date}</span>
+                    </div>
+                    <h2 className="mt-2 text-lg font-bold leading-tight text-dark group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </Container>

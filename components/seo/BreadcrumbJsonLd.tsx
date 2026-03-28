@@ -9,12 +9,18 @@ export default function BreadcrumbJsonLd({ items }: { items: BreadcrumbItem[] })
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: `${SITE_URL}${item.href}`,
-    })),
+    itemListElement: items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      const entry: Record<string, unknown> = {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+      };
+      if (!isLast) {
+        entry.item = `${SITE_URL}${item.href}`;
+      }
+      return entry;
+    }),
   };
 
   return (

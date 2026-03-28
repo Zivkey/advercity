@@ -28,8 +28,8 @@ export default function Hero() {
         className="relative z-10 px-4 text-center"
       >
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-5xl font-black leading-[1.05] text-dark sm:text-6xl md:text-7xl lg:text-8xl"
         >

@@ -6,6 +6,7 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import LocalBusinessJsonLd from "@/components/seo/LocalBusinessJsonLd";
+import WebSiteJsonLd from "@/components/seo/WebSiteJsonLd";
 import "./globals.css";
 
 const inter = Inter({
@@ -50,6 +51,7 @@ export default function RootLayout({
     <html lang="sr" className={`${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col">
         <LocalBusinessJsonLd />
+        <WebSiteJsonLd />
         <Header />
         <main id="main-content" className="flex-1">
           {children}

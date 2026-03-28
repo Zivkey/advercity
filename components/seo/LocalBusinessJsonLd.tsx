@@ -3,7 +3,8 @@ import { CONTACT, SOCIAL, SERVICES, SITE_URL, SITE_NAME, SITE_DESCRIPTION } from
 export default function LocalBusinessJsonLd() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["ProfessionalService", "Organization"],
+    "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
@@ -11,10 +12,12 @@ export default function LocalBusinessJsonLd() {
     image: `${SITE_URL}/images/og-default.jpg`,
     telephone: CONTACT.phone,
     email: CONTACT.email,
+    priceRange: "$$",
+    knowsLanguage: ["sr", "en"],
     address: {
       "@type": "PostalAddress",
       streetAddress: CONTACT.address,
-      addressLocality: CONTACT.city,
+      addressLocality: "Niš",
       addressRegion: CONTACT.region,
       postalCode: CONTACT.zip,
       addressCountry: CONTACT.country,
@@ -24,16 +27,22 @@ export default function LocalBusinessJsonLd() {
       latitude: CONTACT.lat,
       longitude: CONTACT.lng,
     },
-    areaServed: {
-      "@type": "City",
-      name: "Nis",
-    },
-    foundingDate: "1999",
+    areaServed: [
+      { "@type": "City", name: "Niš" },
+      { "@type": "Country", name: "Srbija" },
+    ],
+    foundingDate: "1999-01-01",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
       minValue: 20,
     },
     sameAs: [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.linkedin],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: CONTACT.phone,
+      contactType: "customer service",
+      availableLanguage: ["sr", "en"],
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Marketing usluge",

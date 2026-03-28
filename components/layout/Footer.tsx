@@ -163,16 +163,10 @@ export default function Footer() {
             <p>&copy; {new Date().getFullYear()} {SITE_NAME}. Sva prava zadrzana.</p>
             <div className="flex gap-6">
               <Link
-                href="/politika-privatnosti/"
+                href="/kontakt/"
                 className="transition-colors hover:text-white"
               >
-                Politika privatnosti
-              </Link>
-              <Link
-                href="/uslovi-koriscenja/"
-                className="transition-colors hover:text-white"
-              >
-                Uslovi koriscenja
+                Kontakt
               </Link>
             </div>
           </div>

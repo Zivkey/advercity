@@ -7,6 +7,7 @@ import { SERVICE_PAGES } from "@/lib/services-data";
 import { SERVICES } from "@/lib/constants";
 import Container from "@/components/ui/Container";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import ServiceJsonLd from "@/components/seo/ServiceJsonLd";
 import CTASection from "@/components/sections/CTASection";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -38,7 +39,7 @@ export default async function ServicePage({ params }: Props) {
 
   const breadcrumbs = [
     { name: "Pocetna", href: "/" },
-    { name: "Usluge", href: "/usluge/" },
+    { name: "Usluge", href: "/#usluge" },
     { name: service.title, href: `/usluge/${service.slug}/` },
   ];
 
@@ -48,6 +49,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <>
       <BreadcrumbJsonLd items={breadcrumbs} />
+      <ServiceJsonLd name={service.title} description={service.metaDescription} slug={service.slug} />
 
       {/* Hero */}
       <section className="bg-primary pt-40 pb-24 sm:pt-44 sm:pb-32">

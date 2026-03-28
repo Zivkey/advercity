@@ -47,7 +47,7 @@ export default async function IndustryPage({ params }: Props) {
 
   const breadcrumbs = [
     { name: "Pocetna", href: "/" },
-    { name: "Industrije", href: "/industrije/" },
+    { name: "Industrije", href: "/#industrije" },
     { name: industry.title, href: `/industrije/${industry.slug}/` },
   ];
 

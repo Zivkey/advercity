@@ -19,8 +19,10 @@ export function generatePageMetadata({
   const url = `${SITE_URL}${path}`;
   const image = ogImage || `${SITE_URL}/images/og-default.jpg`;
 
+  const hasAbsoluteTitle = title.toLowerCase().includes("advercity");
+
   return {
-    title,
+    title: hasAbsoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
       canonical: url,
