@@ -4,7 +4,9 @@ import Hero from "@/components/sections/Hero";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import StatsCounter from "@/components/sections/StatsCounter";
 import AboutTeaser from "@/components/sections/AboutTeaser";
+import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import Industries from "@/components/sections/Industries";
+import BlogPreview from "@/components/sections/BlogPreview";
 import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -21,7 +23,9 @@ export default function Home() {
       <ServicesGrid />
       <StatsCounter />
       <AboutTeaser />
+      <PortfolioPreview />
       <Industries />
+      <BlogPreview />
       <CTASection />
     </>
   );
