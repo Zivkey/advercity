@@ -33,9 +33,9 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-5xl font-black leading-[1.05] text-dark sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          Marketing Agencija
+          Creating Brand
           <br />
-          <span className="text-primary">Nis</span>
+          <span className="text-primary">Authenticity</span>
         </motion.h1>
 
         <motion.p
