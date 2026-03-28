@@ -9,6 +9,7 @@ Website for **Advercity**, a marketing agency based in Nis, Serbia with 25+ year
 - **Live domain:** advercity.rs
 - **Language:** Serbian (lang="sr"), no English version
 - **Primary color:** `#ED1C24` (matches the dot on "i" in logo)
+- **Slogan:** "Creating Brand Authenticity" (kept in English, not translated)
 
 ## Tech Stack
 
@@ -37,7 +38,7 @@ Website for **Advercity**, a marketing agency based in Nis, Serbia with 25+ year
 ```
 app/
   layout.tsx          — Root layout (Inter font, Header, Footer, JSON-LD schemas)
-  page.tsx            — Homepage (Hero, ServicesGrid, StatsCounter, AboutTeaser, Industries, CTA)
+  page.tsx            — Homepage (Hero, ServicesGrid, StatsCounter, AboutTeaser, PortfolioPreview, Industries, BlogPreview, CTA)
   not-found.tsx       — Custom 404
   sitemap.ts          — Dynamic sitemap
   robots.ts           — Robots.txt
@@ -79,6 +80,17 @@ All inner pages use the same hero pattern: red bg, white text, `pt-40 pb-24 sm:p
 ### CTA Section
 `<CTASection />` is used on every page. Shared component, one place to edit.
 
+### Homepage Sections (8 total)
+Hero → ServicesGrid → StatsCounter → AboutTeaser → PortfolioPreview → Industries → BlogPreview → CTASection
+
+- **PortfolioPreview** — Red header, 8 project cards in 2×4 edge-to-edge grid with hover overlay
+- **BlogPreview** — 3 latest posts on light-alt bg with images, categories, dates
+- **Industries** — 6 square icon cards with black border (15% opacity), 6 per row, `id="industrije"` anchor
+- **ServicesGrid** — Edge-to-edge gap-px grid, `id="usluge"` anchor
+
+### Industry/Service Card Style
+Square cards with icons, black border at 15% opacity (`border border-dark/15`), arrow links. Used on homepage Industries section and cross-links on industry pages. On industry pages, "Ostale industrije" cards are centered with `max-w-2xl mx-auto grid-cols-3`.
+
 ### JSON-LD Schemas
 - `LocalBusinessJsonLd` — on all pages (via layout), ProfessionalService + Organization with @id
 - `WebSiteJsonLd` — on all pages (via layout)
@@ -101,13 +113,20 @@ All inner pages use the same hero pattern: red bg, white text, `pt-40 pb-24 sm:p
 - Breadcrumbs: JSON-LD only (not visible on page)
 - `<html lang="sr">` with Inter font (latin + latin-ext subsets)
 
+### Portfolio Mosaic Grid
+`radovi/page.tsx` uses CSS Grid with `gridAutoFlow: "dense"` and `gridAutoRows: "clamp(200px, 25vw, 400px)"` for mosaic layout. Items have mixed sizes (1x1, 2x1, 1x2) and are ordered to perfectly fill 4 cols × 5 rows (20 cells).
+
+## Git Repository
+
+- **Remote:** git@github.com:Zivkey/advercity.git
+
 ## Known Placeholders (Replace Before Launch)
 
 - All images use `picsum.photos` — need real photography
 - Service page content has Lorem Ipsum in `lib/services-data.ts`
 - Industry page content has Lorem Ipsum in `lib/industries-data.ts`
 - Blog has no individual post pages (`/blog/[slug]/`)
-- Team page has no named members
+- Team page has no named members (general company text + team photos)
 - Contact form API stub (no Resend email sending)
 - Google Maps placeholder on contact page
 - Client logos reference non-existent SVGs in `/public/images/clients/`
