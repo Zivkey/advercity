@@ -22,10 +22,10 @@ export default function Home() {
     <>
       <Hero />
       <ServicesGrid />
-      <StatsCounter />
-      <AboutTeaser />
-      <PortfolioPreview />
       <Industries />
+      <PortfolioPreview />
+      <AboutTeaser />
+      <StatsCounter />
       <BlogPreview />
       <HomeFAQ />
       <CTASection />
