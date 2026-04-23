@@ -126,7 +126,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
       <section className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black text-dark sm:text-4xl">Sta ukljucuje nasa usluga</h2>
+            <h2 className="text-3xl font-black text-dark sm:text-4xl">Šta uključuje naša usluga</h2>
           </div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
             {service.features.map((feature) => (
@@ -157,7 +157,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
                   <p className="mt-2 text-sm text-text-secondary">{s.description}</p>
                 </div>
                 <div className="mt-6 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary transition-transform group-hover:translate-x-1">
-                  Saznaj vise <ArrowRight className="h-4 w-4" />
+                  Saznaj više <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>
             ))}

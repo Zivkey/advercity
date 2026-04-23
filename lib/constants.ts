@@ -2,7 +2,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://advercity.rs";
 export const SITE_NAME = "Advercity";
 export const SITE_DESCRIPTION =
-  "Advercity je kreativna marketing agencija u Nisu sa 25+ godina iskustva. Pruzamo usluge digitalnog marketinga, SEO optimizacije, brendinga, web dizajna i OOH oglasavanja.";
+  "Advercity je kreativna marketing agencija u Nišu sa 25+ godina iskustva. Pružamo usluge digitalnog marketinga, SEO optimizacije, brendinga, web dizajna i OOH oglašavanja.";
 
 export type NavItem = {
   label: string;
@@ -33,17 +33,17 @@ export const SOCIAL = {
 export const STATS = [
   { value: 25, suffix: "+", label: "Godina iskustva" },
   { value: 500, suffix: "+", label: "Realizovanih projekata" },
-  { value: 20, suffix: "+", label: "Clanova tima" },
+  { value: 20, suffix: "+", label: "Članova tima" },
   { value: 7, suffix: "+", label: "Industrija" },
 ];
 
 export const SERVICES = [
   {
-    title: "Graficki Dizajn",
+    title: "Grafički dizajn",
     slug: "graficki-dizajn",
     icon: "PenTool" as const,
     description:
-      "Kreativna graficka resenja za print i digitalne medije.",
+      "Kreativna grafička rešenja za print i digitalne medije.",
   },
   {
     title: "Brendiranje",
@@ -53,18 +53,18 @@ export const SERVICES = [
       "Vizuelni identitet i strategija brenda koja vas izdvaja.",
   },
   {
-    title: "Marketing na drustvenim mrezama",
+    title: "Marketing na društvenim mrežama",
     slug: "social-media-marketing",
     icon: "Share2" as const,
     description:
-      "Upravljanje drustvenim mrezama i kreiranje angazujuceg sadrzaja.",
+      "Upravljanje društvenim mrežama i kreiranje angažujućeg sadržaja.",
   },
   {
-    title: "Google oglasavanje",
+    title: "Google oglašavanje",
     slug: "google-ads",
     icon: "Target" as const,
     description:
-      "Placeno oglasavanje sa merljivim ROI i preciznim targetiranjem.",
+      "Plaćeno oglašavanje sa merljivim ROI i preciznim targetiranjem.",
   },
   {
     title: "WEB sajt",
@@ -81,25 +81,25 @@ export const SERVICES = [
       "Bilbordi, city lightovi i outdoor kampanje u Nisu i Srbiji.",
   },
   {
-    title: "Organizacija dogadjaja",
+    title: "Organizacija događaja",
     slug: "event-marketing",
     icon: "Calendar" as const,
     description:
-      "Organizacija i promocija dogadjaja koji ostavljaju utisak.",
+      "Organizacija i promocija događaja koji ostavljaju utisak.",
   },
   {
     title: "Media planiranje",
     slug: "media-planning",
     icon: "BarChart3" as const,
     description:
-      "Stratesko planiranje medija za maksimalan doseg i ROI.",
+      "Strateško planiranje medija za maksimalan doseg i ROI.",
   },
   {
     title: "Foto i video produkcija",
     slug: "foto-i-video-produkcija",
     icon: "Camera" as const,
     description:
-      "Profesionalna foto i video produkcija za vas brend i kampanje.",
+      "Profesionalna foto i video produkcija za vaš brend i kampanje.",
   },
 ];
 
@@ -145,7 +145,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/o-nama/",
     children: [
       { label: "O kompaniji", href: "/o-nama/" },
-      { label: "Nas tim", href: "/o-nama/tim/" },
+      { label: "Naš tim", href: "/o-nama/tim/" },
     ],
   },
   { label: "Blog", href: "/blog/" },

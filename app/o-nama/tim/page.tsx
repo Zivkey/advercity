@@ -14,7 +14,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function TimPage() {
   const breadcrumbs = [
-    { name: "Pocetna", href: "/" },
+    { name: "Početna", href: "/" },
     { name: "O nama", href: "/o-nama/" },
     { name: "Nas tim", href: "/o-nama/tim/" },
   ];

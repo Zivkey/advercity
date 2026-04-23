@@ -14,7 +14,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function BlogPage() {
   const breadcrumbs = [
-    { name: "Pocetna", href: "/" },
+    { name: "Početna", href: "/" },
     { name: "Blog", href: "/blog/" },
   ];
 

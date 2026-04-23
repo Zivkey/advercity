@@ -35,7 +35,7 @@ export default async function ServicePage({ params }: Props) {
   if (!service) notFound();
 
   const breadcrumbs = [
-    { name: "Pocetna", href: "/" },
+    { name: "Početna", href: "/" },
     { name: "Usluge", href: "/#usluge" },
     { name: service.title, href: `/usluge/${service.slug}/` },
   ];

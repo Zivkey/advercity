@@ -14,7 +14,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function ONamaPage() {
   const breadcrumbs = [
-    { name: "Pocetna", href: "/" },
+    { name: "Početna", href: "/" },
     { name: "O nama", href: "/o-nama/" },
   ];
 

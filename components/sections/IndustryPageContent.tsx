@@ -111,7 +111,7 @@ export default function IndustryPageContent({ industry, otherIndustries }: Props
       <section className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black text-dark sm:text-4xl">Sta nudimo za ovu industriju</h2>
+            <h2 className="text-3xl font-black text-dark sm:text-4xl">Šta nudimo za ovu industriju</h2>
           </div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
             {industry.features.map((feature) => (
