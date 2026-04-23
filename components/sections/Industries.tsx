@@ -1,6 +1,14 @@
+"use client";
+
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, HeartPulse, ShoppingCart, Building2, Car, Code2 } from "lucide-react";
 import { INDUSTRIES } from "@/lib/constants";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const iconMap = {
   UtensilsCrossed,
@@ -12,10 +20,44 @@ const iconMap = {
 } as const;
 
 export default function Industries() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".industries-heading", {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".industries-heading",
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      ScrollTrigger.batch(".industry-card", {
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power3.out",
+          }),
+        start: "top 88%",
+        once: true,
+      });
+
+      gsap.set(".industry-card", { autoAlpha: 0, y: 30 });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="industrije" className="bg-white py-24 sm:py-32">
+    <section id="industrije" ref={sectionRef} className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+        <div className="industries-heading text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
             Industrije
           </p>
@@ -34,7 +76,7 @@ export default function Industries() {
               <Link
                 key={industry.slug}
                 href={`/industrije/${industry.slug}/`}
-                className="group flex aspect-square flex-col justify-between border border-dark/15 p-5 transition-all hover:border-dark/40 hover:bg-light-alt"
+                className="industry-card group flex aspect-square flex-col justify-between border border-dark/15 p-5 transition-all hover:border-dark/40 hover:bg-light-alt"
               >
                 <Icon className="h-7 w-7 text-dark/30 transition-colors group-hover:text-dark/60" />
                 <div className="flex items-end justify-between gap-2">

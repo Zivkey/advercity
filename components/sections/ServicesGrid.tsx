@@ -1,6 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import {
   Globe,
@@ -18,6 +21,8 @@ import {
 } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 const iconMap = {
   Globe,
   Search,
@@ -33,9 +38,43 @@ const iconMap = {
 } as const;
 
 export default function ServicesGrid() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".services-heading", {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".services-heading",
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      ScrollTrigger.batch(".service-card", {
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.08,
+            duration: 0.7,
+            ease: "power3.out",
+          }),
+        start: "top 88%",
+        once: true,
+      });
+
+      gsap.set(".service-card", { autoAlpha: 0, y: 50 });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="usluge" className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 pb-24 pt-24 text-center sm:px-6 sm:pb-32 sm:pt-32 lg:px-8">
+    <section id="usluge" ref={sectionRef} className="bg-white">
+      <div className="services-heading mx-auto max-w-7xl px-4 pb-24 pt-24 text-center sm:px-6 sm:pb-32 sm:pt-32 lg:px-8">
         <h2 className="text-4xl font-black tracking-tight text-dark sm:text-5xl">
           Nase usluge
         </h2>
@@ -44,18 +83,11 @@ export default function ServicesGrid() {
         </p>
       </div>
 
-      {/* Edge-to-edge grid, no side padding */}
       <div className="grid gap-px bg-light-border sm:grid-cols-2 lg:grid-cols-4">
-        {SERVICES.map((service, i) => {
+        {SERVICES.map((service) => {
           const Icon = iconMap[service.icon];
           return (
-            <motion.div
-              key={service.slug}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
-            >
+            <div key={service.slug} className="service-card">
               <Link
                 href={`/usluge/${service.slug}/`}
                 className="group flex h-full flex-col justify-between bg-white p-10 transition-colors hover:bg-light-alt"
@@ -74,14 +106,13 @@ export default function ServicesGrid() {
                   <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>
-            </motion.div>
+            </div>
           );
         })}
 
-        {/* CTA card filling the remaining 2 cells */}
         <Link
           href="/kontakt/"
-          className="group flex flex-col items-center justify-center bg-white p-10 text-center transition-colors hover:bg-light-alt sm:col-span-2"
+          className="group flex flex-col items-center justify-center bg-white p-10 text-center transition-colors hover:bg-light-alt lg:col-span-3"
         >
           <h3 className="text-2xl font-black text-dark sm:text-3xl">
             Imate projekat na umu?

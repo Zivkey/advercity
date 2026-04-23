@@ -1,71 +1,65 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
-import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { STATS } from "@/lib/constants";
 
-function AnimatedNumber({
-  value,
-  suffix,
-  start,
-}: {
-  value: number;
-  suffix: string;
-  start: boolean;
-}) {
-  const [display, setDisplay] = useState(value);
-  const animatedRef = useRef(false);
-
-  const runAnimation = useCallback(() => {
-    if (animatedRef.current) return;
-    animatedRef.current = true;
-
-    const duration = 2000;
-    const startTime = performance.now();
-
-    function animate(currentTime: number) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(eased * value));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    }
-
-    setDisplay(0);
-    requestAnimationFrame(animate);
-  }, [value]);
-
-  useEffect(() => {
-    if (start) runAnimation();
-  }, [start, runAnimation]);
-
-  return (
-    <span>
-      {display}
-      {suffix}
-    </span>
-  );
-}
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function StatsCounter() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const sectionRef = useRef<HTMLElement>(null);
+  const numRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useGSAP(
+    () => {
+      gsap.from(".stat-item", {
+        autoAlpha: 0,
+        y: 30,
+        stagger: 0.12,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      STATS.forEach((stat, i) => {
+        const el = numRefs.current[i];
+        if (!el) return;
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: stat.value,
+          duration: 2,
+          ease: "power2.out",
+          snap: { val: 1 },
+          onUpdate: () => {
+            el.textContent = String(obj.val) + stat.suffix;
+          },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section className="bg-primary py-24 sm:py-32" ref={ref}>
+    <section className="bg-primary py-24 sm:py-32" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-12 lg:grid-cols-4">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
+          {STATS.map((stat, i) => (
+            <div key={stat.label} className="stat-item text-center">
               <p className="text-5xl font-black text-white sm:text-6xl lg:text-7xl">
-                <AnimatedNumber
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  start={isInView}
-                />
+                <span ref={(el) => { numRefs.current[i] = el; }}>
+                  0{stat.suffix}
+                </span>
               </p>
               <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-white/70">
                 {stat.label}

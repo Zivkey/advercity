@@ -1,14 +1,68 @@
+"use client";
+
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { PORTFOLIO_ITEMS } from "@/lib/portfolio-data";
 import Button from "@/components/ui/Button";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 const PREVIEW_ITEMS = PORTFOLIO_ITEMS.filter((item) => item.type === "project").slice(0, 8);
 
 export default function PortfolioPreview() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".portfolio-heading", {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".portfolio-heading",
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      ScrollTrigger.batch(".portfolio-item", {
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            autoAlpha: 1,
+            scale: 1,
+            stagger: 0.07,
+            duration: 0.6,
+            ease: "power3.out",
+          }),
+        start: "top 90%",
+        once: true,
+      });
+
+      gsap.set(".portfolio-item", { autoAlpha: 0, scale: 0.95 });
+
+      gsap.from(".portfolio-btn", {
+        autoAlpha: 0,
+        y: 20,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".portfolio-btn",
+          start: "top 90%",
+          once: true,
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section className="bg-white">
-      <div className="bg-primary px-4 py-24 text-center sm:py-32">
+    <section ref={sectionRef} className="bg-white">
+      <div className="portfolio-heading bg-primary px-4 py-24 text-center sm:py-32">
         <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
           Nasi projekti
         </h2>
@@ -21,7 +75,7 @@ export default function PortfolioPreview() {
         {PREVIEW_ITEMS.map((item, i) => (
           <div
             key={i}
-            className="group relative cursor-pointer overflow-hidden"
+            className="portfolio-item group relative cursor-pointer overflow-hidden"
             style={{ aspectRatio: "1" }}
           >
             <Image
@@ -46,7 +100,7 @@ export default function PortfolioPreview() {
         ))}
       </div>
 
-      <div className="py-12 text-center">
+      <div className="portfolio-btn py-12 text-center">
         <Button href="/projekti/" variant="outline" size="md">
           Pogledajte sve projekte
         </Button>
