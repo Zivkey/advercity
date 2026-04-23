@@ -53,14 +53,13 @@ export default function IndustryPageContent({ industry, otherIndustries }: Props
         scrollTrigger: { trigger: ".ind-feature", start: "top 88%", once: true },
       });
 
-      gsap.from(".ind-other-card", {
-        y: 30,
-        autoAlpha: 0,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: { trigger: ".ind-other-card", start: "top 88%", once: true },
+      ScrollTrigger.batch(".ind-other-card", {
+        onEnter: (batch) =>
+          gsap.to(batch, { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power3.out" }),
+        start: "top 90%",
+        once: true,
       });
+      gsap.set(".ind-other-card", { autoAlpha: 0, y: 30 });
     },
     { scope: ref }
   );
