@@ -13,6 +13,7 @@ import {
   PenTool,
   Calendar,
   BarChart3,
+  Camera,
   ArrowRight,
 } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
@@ -28,6 +29,7 @@ const iconMap = {
   PenTool,
   Calendar,
   BarChart3,
+  Camera,
 } as const;
 
 export default function ServicesGrid() {

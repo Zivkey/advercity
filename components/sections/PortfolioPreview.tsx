@@ -10,7 +10,7 @@ export default function PortfolioPreview() {
     <section className="bg-white">
       <div className="bg-primary px-4 py-24 text-center sm:py-32">
         <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
-          Nasi radovi
+          Nasi projekti
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-base text-white/70">
           500+ realizovanih projekata. Evo nekih od njih.
@@ -47,8 +47,8 @@ export default function PortfolioPreview() {
       </div>
 
       <div className="py-12 text-center">
-        <Button href="/radovi/" variant="outline" size="md">
-          Pogledajte sve radove
+        <Button href="/projekti/" variant="outline" size="md">
+          Pogledajte sve projekte
         </Button>
       </div>
     </section>

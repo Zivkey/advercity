@@ -59,8 +59,8 @@ export default function Hero() {
           <Button href="/kontakt/" size="lg">
             Besplatna konsultacija
           </Button>
-          <Button href="/radovi/" variant="outline" size="lg">
-            Pogledajte radove
+          <Button href="/projekti/" variant="outline" size="lg">
+            Pogledajte projekte
           </Button>
         </motion.div>
       </motion.div>

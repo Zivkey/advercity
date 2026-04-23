@@ -7,16 +7,16 @@ import Container from "@/components/ui/Container";
 import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Radovi | Portfolio Projekata",
+  title: "Projekti | Portfolio Projekata",
   description:
-    "Pogledajte nase radove — od digitalnog marketinga i brendinga do web dizajna i OOH kampanja. 500+ realizovanih projekata za brendove kao sto su McDonald's, Delta Planet i AIK Banka.",
-  path: "/radovi/",
+    "Pogledajte nase projekte — od digitalnog marketinga i brendinga do web dizajna i OOH kampanja. 500+ realizovanih projekata za brendove kao sto su McDonald's, Delta Planet i AIK Banka.",
+  path: "/projekti/",
 });
 
-export default function RadoviPage() {
+export default function ProjektiPage() {
   const breadcrumbs = [
     { name: "Pocetna", href: "/" },
-    { name: "Radovi", href: "/radovi/" },
+    { name: "Projekti", href: "/projekti/" },
   ];
 
   return (
@@ -28,7 +28,7 @@ export default function RadoviPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-black text-white sm:text-5xl lg:text-6xl">
-              Nasi radovi
+              Nasi projekti
             </h1>
             <p className="mt-6 text-lg text-white/70">
               500+ realizovanih projekata. Evo nekih od njih.

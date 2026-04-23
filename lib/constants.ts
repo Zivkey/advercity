@@ -39,55 +39,6 @@ export const STATS = [
 
 export const SERVICES = [
   {
-    title: "Digitalni Marketing",
-    slug: "digitalni-marketing",
-    icon: "Globe" as const,
-    description:
-      "Kompletne digitalne strategije za rast vaseg biznisa online.",
-  },
-  {
-    title: "SEO Optimizacija",
-    slug: "seo-optimizacija",
-    icon: "Search" as const,
-    description:
-      "Organsko pozicioniranje na Google pretrazi za dugorocne rezultate.",
-  },
-  {
-    title: "Social Media Marketing",
-    slug: "social-media-marketing",
-    icon: "Share2" as const,
-    description:
-      "Upravljanje drustvenim mrezama i kreiranje angazujuceg sadrzaja.",
-  },
-  {
-    title: "Google Ads",
-    slug: "google-ads",
-    icon: "Target" as const,
-    description:
-      "Placeno oglasavanje sa merljivim ROI i preciznim targetiranjem.",
-  },
-  {
-    title: "Web Dizajn",
-    slug: "web-dizajn",
-    icon: "Monitor" as const,
-    description:
-      "Moderni, brzi i SEO optimizovani sajtovi koji konvertuju.",
-  },
-  {
-    title: "Branding",
-    slug: "branding",
-    icon: "Palette" as const,
-    description:
-      "Vizuelni identitet i strategija brenda koja vas izdvaja.",
-  },
-  {
-    title: "OOH Oglasavanje",
-    slug: "ooh-oglasavanje",
-    icon: "MapPin" as const,
-    description:
-      "Bilbordi, city lightovi i outdoor kampanje u Nisu i Srbiji.",
-  },
-  {
     title: "Graficki Dizajn",
     slug: "graficki-dizajn",
     icon: "PenTool" as const,
@@ -95,18 +46,60 @@ export const SERVICES = [
       "Kreativna graficka resenja za print i digitalne medije.",
   },
   {
-    title: "Event Marketing",
+    title: "Brendiranje",
+    slug: "branding",
+    icon: "Palette" as const,
+    description:
+      "Vizuelni identitet i strategija brenda koja vas izdvaja.",
+  },
+  {
+    title: "Marketing na drustvenim mrezama",
+    slug: "social-media-marketing",
+    icon: "Share2" as const,
+    description:
+      "Upravljanje drustvenim mrezama i kreiranje angazujuceg sadrzaja.",
+  },
+  {
+    title: "Google oglasavanje",
+    slug: "google-ads",
+    icon: "Target" as const,
+    description:
+      "Placeno oglasavanje sa merljivim ROI i preciznim targetiranjem.",
+  },
+  {
+    title: "WEB sajt",
+    slug: "web-dizajn",
+    icon: "Monitor" as const,
+    description:
+      "Moderni, brzi i SEO optimizovani sajtovi koji konvertuju.",
+  },
+  {
+    title: "Bilbordi / LED ekrani",
+    slug: "ooh-oglasavanje",
+    icon: "MapPin" as const,
+    description:
+      "Bilbordi, city lightovi i outdoor kampanje u Nisu i Srbiji.",
+  },
+  {
+    title: "Organizacija dogadjaja",
     slug: "event-marketing",
     icon: "Calendar" as const,
     description:
       "Organizacija i promocija dogadjaja koji ostavljaju utisak.",
   },
   {
-    title: "Media Planning",
+    title: "Media planiranje",
     slug: "media-planning",
     icon: "BarChart3" as const,
     description:
       "Stratesko planiranje medija za maksimalan doseg i ROI.",
+  },
+  {
+    title: "Foto i video produkcija",
+    slug: "foto-i-video-produkcija",
+    icon: "Camera" as const,
+    description:
+      "Profesionalna foto i video produkcija za vas brend i kampanje.",
   },
 ];
 
@@ -146,7 +139,7 @@ export const NAV_ITEMS: NavItem[] = [
       href: `/industrije/${i.slug}/`,
     })),
   },
-  { label: "Radovi", href: "/radovi/" },
+  { label: "Projekti", href: "/projekti/" },
   {
     label: "O nama",
     href: "/o-nama/",

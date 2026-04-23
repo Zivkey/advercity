@@ -30,7 +30,7 @@ function LinkedInIcon({ className }: { className?: string }) {
 const companyLinks = [
   { label: "O kompaniji", href: "/o-nama/" },
   { label: "Nas tim", href: "/o-nama/tim/" },
-  { label: "Radovi", href: "/radovi/" },
+  { label: "Projekti", href: "/projekti/" },
   { label: "Blog", href: "/blog/" },
   { label: "Kontakt", href: "/kontakt/" },
 ];

@@ -379,4 +379,39 @@ export const SERVICE_PAGES: ServicePage[] = [
     ],
     ctaText: "Optimizujte vas media mix",
   },
+  {
+    slug: "foto-i-video-produkcija",
+    title: "Foto i video produkcija",
+    metaTitle: "Foto i Video Produkcija Nis | Advercity",
+    metaDescription:
+      "Profesionalna foto i video produkcija za vas brend i marketing kampanje. Advercity — kreativna agencija u Nisu sa 25+ godina iskustva.",
+    heroSubtitle:
+      "Profesionalna foto i video produkcija koja prezentuje vas brend na pravi nacin.",
+    intro:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    sections: [
+      {
+        title: "Foto produkcija",
+        text: "Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+        image: "https://picsum.photos/seed/foto1/800/600",
+        imageAlt: "Foto produkcija studio",
+      },
+      {
+        title: "Video produkcija",
+        text: "Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ut facilisis in, egestas eget quam.",
+        image: "https://picsum.photos/seed/video1/800/600",
+        imageAlt: "Video produkcija snimanje",
+        reverse: true,
+      },
+    ],
+    features: [
+      "Produkcijska fotografija",
+      "Korporativni video sadrzaj",
+      "Reklamni spotovi",
+      "Drone snimanje",
+      "Post-produkcija i montaza",
+      "Fotografija proizvoda",
+    ],
+    ctaText: "Zakazite produkciju",
+  },
 ];

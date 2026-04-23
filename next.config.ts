@@ -24,13 +24,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/projekti",
-        destination: "/radovi/",
+        source: "/radovi",
+        destination: "/projekti/",
         permanent: true,
       },
       {
         source: "/dogadjaji",
-        destination: "/radovi/",
+        destination: "/projekti/",
         permanent: true,
       },
       {
