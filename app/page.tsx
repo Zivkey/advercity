@@ -7,6 +7,7 @@ import AboutTeaser from "@/components/sections/AboutTeaser";
 import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import Industries from "@/components/sections/Industries";
 import BlogPreview from "@/components/sections/BlogPreview";
+import HomeFAQ from "@/components/sections/HomeFAQ";
 import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -26,6 +27,7 @@ export default function Home() {
       <PortfolioPreview />
       <Industries />
       <BlogPreview />
+      <HomeFAQ />
       <CTASection />
     </>
   );
