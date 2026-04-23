@@ -112,6 +112,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
+                      quality={85}
                     />
                   </div>
                 )}
