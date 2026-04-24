@@ -1,17 +1,32 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { NAV_ITEMS, CONTACT } from "@/lib/constants";
-import { ChevronDown, X, Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { NavItem } from "@/lib/constants";
+
+function getIsActive(item: NavItem, pathname: string): boolean {
+  if (item.children) {
+    return item.children.some((c) => {
+      const base = c.href.split("#")[0].replace(/\/$/, "");
+      return base !== "" && pathname.startsWith(base);
+    });
+  }
+  if (item.href.includes("#")) return false;
+  const base = item.href.replace(/\/$/, "");
+  return base !== "" && (pathname === item.href || pathname.startsWith(base + "/"));
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -24,10 +39,9 @@ export default function Header() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      setMobileDropdown(null);
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   return (
@@ -35,69 +49,88 @@ export default function Header() {
       <a href="#main-content" className="skip-to-content">
         Preskoci na sadrzaj
       </a>
+
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
           scrolled ? "bg-white shadow-sm" : "bg-white/90 backdrop-blur-sm"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link href="/">
-            <Image
-              src="/images/logo.svg"
-              alt="Advercity"
-              width={142}
-              height={48}
-              priority
-            />
+            <Image src="/images/logo.svg" alt="Advercity" width={142} height={48} priority />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Glavna navigacija">
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() =>
-                  item.children && setOpenDropdown(item.label)
-                }
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-dark transition-colors hover:text-primary"
+            {NAV_ITEMS.map((item) => {
+              const active = getIsActive(item, pathname);
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => item.children && setOpenDropdown(item.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  {item.label}
-                  {item.children && (
-                    <ChevronDown className="h-3.5 w-3.5" />
-                  )}
-                </Link>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors",
+                      active ? "text-primary" : "text-dark hover:text-primary"
+                    )}
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronDown
+                        className={cn(
+                          "h-3.5 w-3.5 transition-transform duration-200",
+                          openDropdown === item.label ? "rotate-180" : ""
+                        )}
+                      />
+                    )}
+                  </Link>
 
-                {item.children && (
-                  <div className={cn(
-                    "absolute left-0 top-full z-50 w-64 bg-white p-2 shadow-xl ring-1 ring-black/5",
-                    "transition-all duration-200 ease-out",
-                    openDropdown === item.label
-                      ? "opacity-100 translate-y-0 pointer-events-auto visible"
-                      : "opacity-0 -translate-y-1 pointer-events-none invisible"
-                  )}>
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2.5 text-sm text-dark transition-colors hover:bg-light-alt hover:text-primary"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  {/* Active underline */}
+                  {active && (
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary" />
+                  )}
+
+                  {/* Dropdown */}
+                  {item.children && (
+                    <div
+                      className={cn(
+                        "absolute left-0 top-full z-50 w-64 bg-white p-2 shadow-xl ring-1 ring-black/5",
+                        "transition-all duration-200 ease-out",
+                        openDropdown === item.label
+                          ? "visible translate-y-0 opacity-100 pointer-events-auto"
+                          : "invisible -translate-y-1 opacity-0 pointer-events-none"
+                      )}
+                    >
+                      {item.children.map((child) => {
+                        const childBase = child.href.split("#")[0].replace(/\/$/, "");
+                        const childActive = childBase !== "" && pathname.startsWith(childBase);
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={cn(
+                              "block px-4 py-2.5 text-sm transition-colors hover:bg-light-alt hover:text-primary",
+                              childActive ? "font-semibold text-primary" : "text-dark"
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
-          {/* Desktop Right */}
+          {/* Desktop phone */}
           <div className="hidden items-center gap-6 lg:flex">
             <a
               href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
@@ -107,76 +140,141 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile hamburger — morphs into X */}
           <button
-            onClick={() => setMobileOpen(true)}
-            className="text-dark lg:hidden"
-            aria-label="Otvori meni"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative z-[70] flex h-8 w-8 flex-col items-center justify-center gap-[5px] lg:hidden"
+            aria-label={mobileOpen ? "Zatvori meni" : "Otvori meni"}
           >
-            <Menu className="h-7 w-7" />
+            <span
+              className={cn(
+                "block h-[2px] w-7 origin-center bg-white transition-all duration-300",
+                mobileOpen
+                  ? "translate-y-[7px] rotate-45"
+                  : "translate-y-0 rotate-0 bg-dark"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-[2px] w-7 transition-all duration-300",
+                mobileOpen ? "scale-x-0 opacity-0 bg-white" : "scale-x-100 opacity-100 bg-dark"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-[2px] w-7 origin-center bg-white transition-all duration-300",
+                mobileOpen
+                  ? "-translate-y-[7px] -rotate-45"
+                  : "translate-y-0 rotate-0 bg-dark"
+              )}
+            />
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] flex flex-col items-center justify-center bg-primary transition-all duration-500",
+          "fixed inset-0 z-[60] bg-primary",
+          "transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]",
           mobileOpen
-            ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none"
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-full opacity-0 pointer-events-none"
         )}
       >
-        <button
-          onClick={() => setMobileOpen(false)}
-          className="absolute right-6 top-6 text-white"
-          aria-label="Zatvori meni"
+        {/* Nav items */}
+        <nav
+          className="flex h-full flex-col items-center justify-center gap-3"
+          aria-label="Mobilna navigacija"
         >
-          <X className="h-8 w-8" />
-        </button>
-
-        <nav className="flex flex-col items-center gap-4" aria-label="Mobilna navigacija">
-          {NAV_ITEMS.map((item) => (
-            <div key={item.label} className="text-center">
-              <button
-                onClick={() => {
-                  if (item.children) {
-                    setMobileDropdown(
-                      mobileDropdown === item.label ? null : item.label
-                    );
-                  } else {
-                    setMobileOpen(false);
-                    window.location.href = item.href;
-                  }
+          {NAV_ITEMS.map((item, index) => {
+            const active = getIsActive(item, pathname);
+            return (
+              <div
+                key={item.label}
+                className="text-center transition-all"
+                style={{
+                  transitionDelay: mobileOpen ? `${140 + index * 55}ms` : "0ms",
+                  transitionDuration: "380ms",
+                  opacity: mobileOpen ? 1 : 0,
+                  transform: mobileOpen ? "translateY(0)" : "translateY(20px)",
                 }}
-                className="text-4xl font-black text-white transition-opacity hover:opacity-80 sm:text-5xl"
               >
-                {item.label}
-              </button>
-              {item.children && (
-                <div className={cn(
-                  "overflow-hidden transition-all duration-300 ease-in-out",
-                  mobileDropdown === item.label ? "max-h-96 mt-3" : "max-h-0"
-                )}>
-                  <div className="flex flex-col gap-2">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="text-lg text-white/70 transition-opacity hover:text-white"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                {item.children ? (
+                  <button
+                    onClick={() =>
+                      setMobileDropdown(mobileDropdown === item.label ? null : item.label)
+                    }
+                    className={cn(
+                      "flex items-center justify-center gap-2 text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
+                      active ? "text-white" : "text-white/60"
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={cn(
+                        "h-7 w-7 transition-transform duration-300",
+                        mobileDropdown === item.label ? "rotate-180" : ""
+                      )}
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
+                      active ? "text-white" : "text-white/60"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+
+                {/* Mobile submenu */}
+                {item.children && (
+                  <div
+                    className={cn(
+                      "overflow-hidden transition-all duration-300 ease-in-out",
+                      mobileDropdown === item.label ? "mt-3 max-h-96" : "max-h-0"
+                    )}
+                  >
+                    <div className="flex flex-col gap-2">
+                      {item.children.map((child) => {
+                        const childBase = child.href.split("#")[0].replace(/\/$/, "");
+                        const childActive = childBase !== "" && pathname.startsWith(childBase);
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={cn(
+                              "text-lg transition-opacity hover:text-white",
+                              childActive ? "font-semibold text-white" : "text-white/55"
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            );
+          })}
         </nav>
 
-        <div className="mt-10 text-center">
+        {/* Phone at bottom */}
+        <div
+          className="absolute bottom-10 left-0 right-0 text-center transition-all"
+          style={{
+            transitionDelay: mobileOpen ? `${140 + NAV_ITEMS.length * 55}ms` : "0ms",
+            transitionDuration: "380ms",
+            opacity: mobileOpen ? 1 : 0,
+            transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
+          }}
+        >
           <a
             href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
             className="text-xl font-bold text-white/80"
