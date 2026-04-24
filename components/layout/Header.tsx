@@ -52,13 +52,17 @@ export default function Header() {
 
       <header
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
-          scrolled ? "bg-white shadow-sm" : "bg-white/90 backdrop-blur-sm"
+          "fixed left-0 right-0 top-0 transition-all duration-300",
+          mobileOpen
+            ? "z-[70] bg-transparent shadow-none"
+            : scrolled
+            ? "z-50 bg-white shadow-sm"
+            : "z-50 bg-white/90 backdrop-blur-sm"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-          {/* Logo */}
-          <Link href="/">
+          {/* Logo — hidden when mobile menu is open */}
+          <Link href="/" className={cn("transition-opacity duration-300", mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100")}>
             <Image src="/images/logo.svg" alt="Advercity" width={142} height={48} priority />
           </Link>
 
@@ -143,31 +147,21 @@ export default function Header() {
           {/* Mobile hamburger — morphs into X */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-[70] flex h-8 w-8 flex-col items-center justify-center gap-[5px] lg:hidden"
+            className="relative h-8 w-8 lg:hidden"
             aria-label={mobileOpen ? "Zatvori meni" : "Otvori meni"}
           >
-            <span
-              className={cn(
-                "block h-[2px] w-7 origin-center bg-white transition-all duration-300",
-                mobileOpen
-                  ? "translate-y-[7px] rotate-45"
-                  : "translate-y-0 rotate-0 bg-dark"
-              )}
-            />
-            <span
-              className={cn(
-                "block h-[2px] w-7 transition-all duration-300",
-                mobileOpen ? "scale-x-0 opacity-0 bg-white" : "scale-x-100 opacity-100 bg-dark"
-              )}
-            />
-            <span
-              className={cn(
-                "block h-[2px] w-7 origin-center bg-white transition-all duration-300",
-                mobileOpen
-                  ? "-translate-y-[7px] -rotate-45"
-                  : "translate-y-0 rotate-0 bg-dark"
-              )}
-            />
+            <span className={cn(
+              "absolute left-0 h-0.5 w-full origin-center transition-all duration-300",
+              mobileOpen ? "top-[8px] translate-y-[7px] rotate-45 bg-white" : "top-[8px] bg-dark"
+            )} />
+            <span className={cn(
+              "absolute left-0 top-[15px] h-0.5 w-full transition-all duration-300",
+              mobileOpen ? "scale-x-0 opacity-0 bg-white" : "bg-dark"
+            )} />
+            <span className={cn(
+              "absolute left-0 h-0.5 w-full origin-center transition-all duration-300",
+              mobileOpen ? "top-[22px] -translate-y-[7px] -rotate-45 bg-white" : "top-[22px] bg-dark"
+            )} />
           </button>
         </div>
       </header>
