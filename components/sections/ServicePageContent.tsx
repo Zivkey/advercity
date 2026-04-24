@@ -79,7 +79,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
   );
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="overflow-hidden">
       {/* Intro */}
       <section className="bg-white py-20 sm:py-24">
         <Container>

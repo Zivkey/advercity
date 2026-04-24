@@ -76,7 +76,7 @@ export default function HomeFAQ() {
   );
 
   return (
-    <section ref={ref} className="bg-white py-20 sm:py-24">
+    <section ref={ref} className="overflow-hidden bg-white py-20 sm:py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}

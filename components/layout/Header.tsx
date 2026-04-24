@@ -74,8 +74,14 @@ export default function Header() {
                   )}
                 </Link>
 
-                {item.children && openDropdown === item.label && (
-                  <div className="absolute left-0 top-full w-64 bg-white p-2 shadow-xl ring-1 ring-black/5">
+                {item.children && (
+                  <div className={cn(
+                    "absolute left-0 top-full z-50 w-64 bg-white p-2 shadow-xl ring-1 ring-black/5",
+                    "transition-all duration-200 ease-out",
+                    openDropdown === item.label
+                      ? "opacity-100 translate-y-0 pointer-events-auto visible"
+                      : "opacity-0 -translate-y-1 pointer-events-none invisible"
+                  )}>
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
@@ -147,18 +153,23 @@ export default function Header() {
               >
                 {item.label}
               </button>
-              {item.children && mobileDropdown === item.label && (
-                <div className="mt-3 flex flex-col gap-2">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="text-lg text-white/70 transition-opacity hover:text-white"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
+              {item.children && (
+                <div className={cn(
+                  "overflow-hidden transition-all duration-300 ease-in-out",
+                  mobileDropdown === item.label ? "max-h-96 mt-3" : "max-h-0"
+                )}>
+                  <div className="flex flex-col gap-2">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="text-lg text-white/70 transition-opacity hover:text-white"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
