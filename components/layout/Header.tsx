@@ -200,14 +200,15 @@ export default function Header() {
                       setMobileDropdown(mobileDropdown === item.label ? null : item.label)
                     }
                     className={cn(
-                      "flex items-center justify-center gap-2 text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
+                      "relative text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
                       active ? "text-white" : "text-white/60"
                     )}
                   >
                     {item.label}
                     <ChevronDown
                       className={cn(
-                        "h-7 w-7 transition-transform duration-300",
+                        "absolute top-1/2 -translate-y-1/2 h-6 w-6 transition-transform duration-300",
+                        "left-[calc(100%+10px)]",
                         mobileDropdown === item.label ? "rotate-180" : ""
                       )}
                     />
