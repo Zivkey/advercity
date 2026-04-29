@@ -56,7 +56,7 @@ export default function ProjektiGrid() {
                 }`}
               >
                 <p
-                  className={`text-center text-xl font-black leading-tight sm:text-2xl lg:text-3xl ${
+                  className={`text-center text-xl font-display font-light tracking-[-0.04em] leading-tight sm:text-2xl lg:text-3xl ${
                     item.bg === "primary" ? "text-white" : "text-dark"
                   }`}
                 >
@@ -89,7 +89,7 @@ export default function ProjektiGrid() {
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
                     {item.category}
                   </p>
-                  <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+                  <h3 className="mt-3 text-2xl font-display font-light tracking-[-0.04em] text-white sm:text-3xl">
                     {item.client}
                   </h3>
                   <p className="mt-2 text-sm text-white/70">{item.title}</p>

@@ -84,7 +84,7 @@ export default function BlogPreview() {
     <section ref={sectionRef} className="bg-light-alt py-24 sm:py-32">
       <Container>
         <div className="blog-heading text-center">
-          <h2 className="text-4xl font-black tracking-tight text-dark sm:text-5xl">
+          <h2 className="text-4xl font-display font-light tracking-[-0.04em] text-dark sm:text-5xl">
             Blog
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base text-text-secondary">

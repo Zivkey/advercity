@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Jost, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
@@ -9,8 +9,15 @@ import LocalBusinessJsonLd from "@/components/seo/LocalBusinessJsonLd";
 import WebSiteJsonLd from "@/components/seo/WebSiteJsonLd";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const jost = Jost({
+  variable: "--font-jost",
+  subsets: ["latin", "latin-ext"],
+  weight: ["200", "300", "400", "700"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -53,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sr" className={`${inter.variable} h-full`}>
+    <html lang="sr" className={`${jost.variable} ${dmSans.variable} h-full`}>
       <body className="flex min-h-full flex-col">
         <LocalBusinessJsonLd />
         <WebSiteJsonLd />

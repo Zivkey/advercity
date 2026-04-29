@@ -86,7 +86,7 @@ export default function IndustryPageContent({ industry, otherIndustries }: Props
           <Container>
             <div className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${section.reverse ? "direction-rtl" : ""}`}>
               <div className={`ind-text ${section.reverse ? "lg:order-2" : ""}`}>
-                <h2 className="text-3xl font-black text-dark sm:text-4xl">{section.title}</h2>
+                <h2 className="text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">{section.title}</h2>
                 <p className="mt-6 text-base leading-relaxed text-text-secondary">{section.text}</p>
               </div>
               <div className={`ind-img ${section.reverse ? "lg:order-1" : ""}`}>
@@ -111,7 +111,7 @@ export default function IndustryPageContent({ industry, otherIndustries }: Props
       <section className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black text-dark sm:text-4xl">Šta nudimo za ovu industriju</h2>
+            <h2 className="text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">Šta nudimo za ovu industriju</h2>
           </div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
             {industry.features.map((feature) => (
@@ -127,7 +127,7 @@ export default function IndustryPageContent({ industry, otherIndustries }: Props
       {/* Other industries */}
       <section className="bg-light-alt py-20 sm:py-24">
         <Container>
-          <h2 className="text-center text-3xl font-black text-dark sm:text-4xl">Ostale industrije</h2>
+          <h2 className="text-center text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">Ostale industrije</h2>
           <div className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4">
             {otherIndustries.map((ind) => {
               const Icon = iconMap[ind.icon];

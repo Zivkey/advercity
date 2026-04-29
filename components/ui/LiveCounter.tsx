@@ -37,7 +37,7 @@ export default function LiveCounter() {
     <div className="flex gap-6 sm:gap-10">
       {items.map((item) => (
         <div key={item.label} className="text-center">
-          <p className="text-3xl font-black tabular-nums text-white sm:text-4xl lg:text-5xl">
+          <p className="text-3xl font-display font-light tracking-[-0.04em] tabular-nums text-white sm:text-4xl lg:text-5xl">
             {String(item.value).padStart(2, "0")}
           </p>
           <p className="mt-1 text-xs font-medium uppercase tracking-[0.15em] text-white/50">

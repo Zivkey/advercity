@@ -30,7 +30,7 @@ export default function PageHero({ title, subtitle }: PageHeroProps) {
     <section ref={ref} className="bg-primary pt-40 pb-24 sm:pt-44 sm:pb-32">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="ph-title text-4xl font-black text-white sm:text-5xl lg:text-6xl">
+          <h1 className="ph-title text-4xl font-display font-light tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
             {title}
           </h1>
           {subtitle && (

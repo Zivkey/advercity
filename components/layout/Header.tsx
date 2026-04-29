@@ -63,7 +63,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
           {/* Logo — hidden when mobile menu is open */}
           <Link href="/" className={cn("transition-opacity duration-300", mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100")}>
-            <Image src="/images/logo.svg" alt="Advercity" width={142} height={48} priority />
+            <Image src="/images/logo.svg" alt="Advercity" width={200} height={45} priority />
           </Link>
 
           {/* Desktop Nav */}
@@ -200,7 +200,7 @@ export default function Header() {
                       setMobileDropdown(mobileDropdown === item.label ? null : item.label)
                     }
                     className={cn(
-                      "relative text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
+                      "relative text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
                       active ? "text-white" : "text-white/60"
                     )}
                   >
@@ -218,7 +218,7 @@ export default function Header() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "text-4xl font-black transition-opacity hover:opacity-80 sm:text-5xl",
+                      "text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
                       active ? "text-white" : "text-white/60"
                     )}
                   >

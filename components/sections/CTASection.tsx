@@ -31,7 +31,7 @@ export default function CTASection() {
   return (
     <section ref={sectionRef} className="bg-light-alt py-12 sm:py-14">
       <div className="cta-content mx-auto max-w-3xl px-4 text-center">
-        <h2 className="text-3xl font-black text-dark sm:text-4xl">
+        <h2 className="text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">
           Zelite da vas projekat
           <br />
           bude sledeci?

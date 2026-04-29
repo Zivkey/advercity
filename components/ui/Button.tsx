@@ -18,10 +18,10 @@ interface ButtonProps {
 const variantStyles: Record<ButtonVariant, string> = {
   primary: "bg-primary text-white hover:bg-primary-dark",
   outline:
-    "border-2 border-dark text-dark hover:bg-dark hover:text-white",
+    "border border-dark text-dark hover:bg-dark hover:text-white",
   ghost: "text-primary hover:bg-primary/10",
   "white-outline":
-    "border-2 border-white text-white hover:bg-white hover:text-dark",
+    "border border-white text-white hover:bg-white hover:text-dark",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -41,7 +41,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer",
+    "inline-flex items-center justify-center font-display font-normal uppercase tracking-wider transition-all duration-300 cursor-pointer",
     variantStyles[variant],
     sizeStyles[size],
     disabled && "opacity-50 cursor-not-allowed",

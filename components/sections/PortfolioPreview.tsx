@@ -63,7 +63,7 @@ export default function PortfolioPreview() {
   return (
     <section ref={sectionRef} className="bg-white">
       <div className="portfolio-heading bg-primary px-4 py-24 text-center sm:py-32">
-        <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
+        <h2 className="text-4xl font-display font-light tracking-[-0.04em] text-white sm:text-5xl">
           Nasi projekti
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-base text-white/70">
@@ -90,7 +90,7 @@ export default function PortfolioPreview() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
                   {item.category}
                 </p>
-                <h3 className="mt-3 text-xl font-black text-white sm:text-2xl">
+                <h3 className="mt-3 text-xl font-display font-light tracking-[-0.04em] text-white sm:text-2xl">
                   {item.client}
                 </h3>
                 <p className="mt-2 text-sm text-white/70">{item.title}</p>

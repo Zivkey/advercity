@@ -56,7 +56,7 @@ export default function StatsCounter() {
         <div className="grid grid-cols-2 gap-12 lg:grid-cols-4">
           {STATS.map((stat, i) => (
             <div key={stat.label} className="stat-item text-center">
-              <p className="text-5xl font-black text-white sm:text-6xl lg:text-7xl">
+              <p className="text-5xl font-display font-light tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
                 <span ref={(el) => { numRefs.current[i] = el; }}>
                   0{stat.suffix}
                 </span>

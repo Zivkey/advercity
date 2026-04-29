@@ -39,7 +39,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-white/80" />
 
       <div className="relative z-10 px-4 text-center">
-        <h1 className="hero-title text-5xl font-black leading-[1.05] text-dark sm:text-6xl md:text-7xl lg:text-8xl">
+        <h1 className="hero-title font-display text-5xl font-light leading-[1.05] tracking-[-0.04em] text-dark sm:text-6xl md:text-7xl lg:text-8xl">
           Creating Brand
           <br />
           <span className="text-primary">Authenticity</span>

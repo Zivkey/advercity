@@ -100,7 +100,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
           <Container>
             <div className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${section.reverse ? "direction-rtl" : ""}`}>
               <div className={`svc-text ${section.reverse ? "lg:order-2" : ""}`}>
-                <h2 className="text-3xl font-black text-dark sm:text-4xl">{section.title}</h2>
+                <h2 className="text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">{section.title}</h2>
                 <p className="mt-6 text-base leading-relaxed text-text-secondary">{section.text}</p>
               </div>
               <div className={`svc-img ${section.reverse ? "lg:order-1" : ""}`}>
@@ -126,7 +126,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
       <section className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black text-dark sm:text-4xl">Šta uključuje naša usluga</h2>
+            <h2 className="text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">Šta uključuje naša usluga</h2>
           </div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
             {service.features.map((feature) => (
@@ -142,7 +142,7 @@ export default function ServicePageContent({ service, otherServices }: Props) {
       {/* Other services */}
       <section className="bg-light-alt py-20 sm:py-24">
         <Container>
-          <h2 className="svc-other-title text-center text-3xl font-black text-dark sm:text-4xl">
+          <h2 className="svc-other-title text-center text-3xl font-display font-light tracking-[-0.04em] text-dark sm:text-4xl">
             Ostale usluge
           </h2>
           <div className="mt-12 grid gap-px bg-light-border sm:grid-cols-3">

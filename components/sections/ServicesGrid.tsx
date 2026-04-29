@@ -75,7 +75,7 @@ export default function ServicesGrid() {
   return (
     <section id="usluge" ref={sectionRef} className="bg-white">
       <div className="services-heading mx-auto max-w-7xl px-4 pb-24 pt-24 text-center sm:px-6 sm:pb-32 sm:pt-32 lg:px-8">
-        <h2 className="text-4xl font-black tracking-tight text-dark sm:text-5xl">
+        <h2 className="text-4xl font-display font-light tracking-[-0.04em] text-dark sm:text-5xl">
           Nase usluge
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-base text-text-secondary">
@@ -94,7 +94,7 @@ export default function ServicesGrid() {
               >
                 <div>
                   <Icon className="mb-6 h-8 w-8 text-primary" />
-                  <h3 className="text-xl font-bold text-dark">
+                  <h3 className="text-xl font-display font-normal tracking-[-0.04em] text-dark">
                     {service.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-text-secondary">
@@ -114,7 +114,7 @@ export default function ServicesGrid() {
           href="/kontakt/"
           className="group flex flex-col items-center justify-center bg-white p-10 text-center transition-colors hover:bg-light-alt lg:col-span-3"
         >
-          <h3 className="text-2xl font-black text-dark sm:text-3xl">
+          <h3 className="text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">
             Imate projekat na umu?
           </h3>
           <p className="mt-3 text-base text-text-secondary">

@@ -57,7 +57,7 @@ export default function ONamaContent() {
       <section className="bg-white py-16 sm:py-24">
         <Container>
           <div className="onam-intro mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-black text-dark sm:text-3xl">
+            <h2 className="text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">
               Od malog studija do vodece agencije u regionu
             </h2>
             <p className="mt-6 text-base leading-relaxed text-text-secondary">
@@ -73,7 +73,7 @@ export default function ONamaContent() {
       {/* Timeline */}
       <section className="bg-light-alt py-16 sm:py-24">
         <Container>
-          <h2 className="mb-16 text-center text-2xl font-black text-dark sm:mb-20 sm:text-3xl">
+          <h2 className="mb-16 text-center text-2xl font-display font-light tracking-[-0.04em] text-dark sm:mb-20 sm:text-3xl">
             Nasa istorija
           </h2>
           <div className="relative">
@@ -91,7 +91,7 @@ export default function ONamaContent() {
                     <div className={`pl-12 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${isLeft ? "" : "sm:direction-rtl"}`}>
                       <div className={isLeft ? "sm:pr-16 sm:text-right" : "sm:order-2 sm:pl-16 sm:text-left"}>
                         <p className="text-sm font-bold uppercase tracking-wider text-primary">{item.year}</p>
-                        <h3 className="mt-2 text-xl font-black text-dark sm:text-2xl">{item.title}</h3>
+                        <h3 className="mt-2 text-xl font-display font-light tracking-[-0.04em] text-dark sm:text-2xl">{item.title}</h3>
                         <p className="mt-3 text-sm leading-relaxed text-text-secondary">{item.description}</p>
                       </div>
                       <div className={`mt-4 sm:mt-0 ${isLeft ? "sm:order-2 sm:pl-16" : "sm:order-1 sm:pr-16"}`}>
@@ -111,7 +111,7 @@ export default function ONamaContent() {
       {/* Values */}
       <section className="bg-white py-16 sm:py-24">
         <Container>
-          <h2 className="mb-12 text-center text-2xl font-black text-dark sm:text-3xl">Nase vrednosti</h2>
+          <h2 className="mb-12 text-center text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">Nase vrednosti</h2>
           <div className="grid gap-px bg-light-border sm:grid-cols-2 lg:grid-cols-4">
             {VALUES.map((value) => (
               <div key={value.title} className="value-card bg-white p-8 sm:p-10">

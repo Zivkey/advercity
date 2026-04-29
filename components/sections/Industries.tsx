@@ -61,7 +61,7 @@ export default function Industries() {
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
             Industrije
           </p>
-          <h2 className="mt-5 text-4xl font-black tracking-tight text-dark sm:text-5xl">
+          <h2 className="mt-5 text-4xl font-display font-light tracking-[-0.04em] text-dark sm:text-5xl">
             Industrije koje pokrivamo
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base text-text-secondary">

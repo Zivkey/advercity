@@ -48,8 +48,8 @@ export default function Footer() {
                 <Image
                   src="/images/logo-footer.svg"
                   alt="Advercity"
-                  width={118}
-                  height={40}
+                  width={160}
+                  height={36}
                 />
               </Link>
               <p className="mt-4 text-sm leading-relaxed text-white/60">

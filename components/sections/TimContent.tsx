@@ -45,7 +45,7 @@ export default function TimContent() {
       <section className="bg-white py-16 sm:py-24">
         <Container>
           <div className="tim-text mx-auto max-w-3xl">
-            <h2 className="text-center text-2xl font-black text-dark sm:text-3xl">Ljudi koji stoje iza svakog projekta</h2>
+            <h2 className="text-center text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">Ljudi koji stoje iza svakog projekta</h2>
             <p className="mt-8 text-base leading-relaxed text-text-secondary">
               Advercity tim cini vise od 20 strucnjaka iz oblasti digitalnog marketinga, brendinga,
               grafickog dizajna, web razvoja i medijskog planiranja. Svaki clan donosi jedinstvenu
@@ -70,7 +70,7 @@ export default function TimContent() {
       <section className="bg-white py-16 sm:py-24">
         <Container>
           <div className="tim-text mx-auto max-w-3xl">
-            <h2 className="text-center text-2xl font-black text-dark sm:text-3xl">Kultura koja nas pokrece</h2>
+            <h2 className="text-center text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">Kultura koja nas pokrece</h2>
             <p className="mt-8 text-base leading-relaxed text-text-secondary">
               U Advercity-ju negujemo kulturu otvorenosti, radoznalosti i konstantnog ucenja.
               Pratimo najnovije trendove u industriji, eksperimentisemo sa novim alatima i
@@ -100,7 +100,7 @@ export default function TimContent() {
       <section className="bg-white py-16 sm:py-24">
         <Container>
           <div className="tim-text mx-auto max-w-3xl">
-            <h2 className="text-center text-2xl font-black text-dark sm:text-3xl">Zelite da se pridruzite?</h2>
+            <h2 className="text-center text-2xl font-display font-light tracking-[-0.04em] text-dark sm:text-3xl">Zelite da se pridruzite?</h2>
             <p className="mt-8 text-center text-base leading-relaxed text-text-secondary">
               Uvek trazimo talentovane ljude koji dele nasu strast za kreativnost i rezultate.
               Ako mislite da ste pravi za nas tim, posaljite nam CV na info@advercity.rs.
