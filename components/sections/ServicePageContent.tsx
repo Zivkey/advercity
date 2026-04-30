@@ -105,16 +105,23 @@ export default function ServicePageContent({ service, otherServices }: Props) {
               </div>
               <div className={`svc-img ${section.reverse ? "lg:order-1" : ""}`}>
                 {section.image && (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-light-border">
-                    <Image
-                      src={section.image}
-                      alt={section.imageAlt || section.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      quality={85}
-                    />
-                  </div>
+                  <figure>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-light-border">
+                      <Image
+                        src={section.image}
+                        alt={section.imageAlt || section.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        quality={85}
+                      />
+                    </div>
+                    {section.caption && (
+                      <figcaption className="mt-3 text-xs uppercase tracking-[0.15em] text-text-secondary">
+                        {section.caption}
+                      </figcaption>
+                    )}
+                  </figure>
                 )}
               </div>
             </div>

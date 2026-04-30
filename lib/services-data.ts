@@ -10,6 +10,7 @@ export interface ServicePage {
     text: string;
     image?: string;
     imageAlt?: string;
+    caption?: string;
     reverse?: boolean;
   }[];
   features: string[];
@@ -211,21 +212,23 @@ export const SERVICE_PAGES: ServicePage[] = [
     metaDescription:
       "Brendiranje upravnih zgrada, maloprodajnih objekata, fasada, enterijera i vozila. Svetleće reklame, 3D logo, folije, štampani vinili. Advercity, Niš — 25+ godina iskustva.",
     heroSubtitle:
-      "Prisustvo brenda u prostoru — gde god vidiš zgodno mesto, ti brend posadi.",
+      "Svako vidljivo mesto je pogodno za brend komunikaciju.",
     intro:
       "Jedan od pojavnih segmenata brenda je njegovo prisustvo u prostoru. Upravne zgrade, maloprodajni objekti, fasade, stakleni portali, zidovi kancelarija i holova, kamioni, automobili, svetleća reklama na zgradi… gde god vidiš zgodno mesto ti brend posadi :-)",
     sections: [
       {
         title: "Enterijeri",
-        text: "Butik, market, kancelarija, ulazni foaje, idealna su mesta da pozicioniramo 3D logo, okačimo poster u klip frejmu, postavimo brend. Svaki prostor u kome se odvija delatnost dobar je za komunikaciju sa kupcima i poslovnim partnerima. U holu i kancelarijama će akcenat biti na brendu, u filijali banke na aktuelnim ponudama kredita i servisa, u marketima na akcijama i posebnim ponudama, u butiku na novoj kolekciji. Naš kreativni tim će osmisliti pravo idejno rešenje i adekvatno brendirati enterijer u kome obavljate svoj posao.",
+        text: "Market, butik, sala za prezentacije, restoran, ulazni foaje, idealna su mesta da pozicioniramo 3D logo, okačimo poster u klip frejmu, pokažemo brend. Svaki prostor u kome se odvija delatnost dobar je za komunikaciju sa kupcima i poslovnim partnerima. U konferencijskoj sali, holu i kancelarijama će akcenat biti na brendu, u filijali banke na aktuelnim ponudama kredita i servisa, u restoranu na hrani, u marketima na akcijama i posebnim ponudama, u butiku na novoj kolekciji. Naš kreativni tim će osmisliti pravo idejno rešenje i adekvatno brendirati enterijer u kome obavljate svoj posao.",
         image: "/images/services/brendiranje/enterijer.jpg",
         imageAlt: "Brendiranje enterijera — 3D logo, posteri u klip frejmu i brendiranje kancelarija, Advercity Niš",
+        caption: "Naučno Tehnološki Park Niš",
       },
       {
         title: "Eksterijeri",
-        text: "Ulaz u poslovnu zgradu, fasada, spoljni stakleni portali marketa, butika, filijale banke, idealna su mesta da postavimo svetleću reklamu, zalepimo foliju sa reklamom preko cele površine, diskretno brendiramo staklo ka prolaznicima. Tzv. maloprodajni prostori su posebno pogodni za prenošenje promo poruka, koje će ga učiniti lepšim, ali i pomoći u povećanju prodaje. Naš kreativni tim će osmisliti pravo idejno rešenje i adekvatno brendirati eksterijer kojim se obraćate direktno kupcima i klijentima.",
+        text: "Stakleni portal restorana, marketa, filijale banke, butika, radnje, ulaz u poslovnu zgradu, fasada, idealna su mesta da postavimo svetleću reklamu, zalepimo foliju sa reklamom preko cele površine, diskretno brendiramo staklo ka prolaznicima. Tzv. maloprodajni prostori su posebno pogodni za prenošenje promo poruka, koje će ga učiniti lepšim, ali i pomoći u povećanju prodaje. Naš kreativni tim će osmisliti pravo idejno rešenje i adekvatno brendirati eksterijer kojim se obraćate direktno kupcima i klijentima.",
         image: "/images/services/brendiranje/eksterijer.jpg",
         imageAlt: "Brendiranje eksterijera — svetleće reklame, folije i staklene portale, Advercity Niš",
+        caption: "Restoran Vapiano TC Rajićeva",
         reverse: true,
       },
       {
@@ -233,6 +236,7 @@ export const SERVICE_PAGES: ServicePage[] = [
         text: "Bilo da je u pitanju kamion, pik ap, putničko vozilo ili autobusi i tramvaji gradskog prevoza, oni su dobar medij preko koga komunicirate svoj brend ili proizvode, tzv. pokretni bilbord. Štampani vinili kao cerada ili specijalne folije za oblepljivanje svih površina vozila će trajati dugo, ulepšati vozilo i predstavljati vašu reklamnu kampanju u pokretu. Naš kreativni tim će osmisliti pravo idejno rešenje i adekvatno brendirati svako vozilo kojim obavljate svoj posao.",
         image: "/images/services/brendiranje/vozila.jpg",
         imageAlt: "Brendiranje vozila — kamioni, pik apovi i putnička vozila kao pokretni bilbord, Advercity Niš",
+        caption: "Mlekara Milk House",
       },
     ],
     features: [
@@ -295,41 +299,47 @@ export const SERVICE_PAGES: ServicePage[] = [
     sections: [
       {
         title: "Vizuelni identitet",
-        text: "Osmislimo ime za kompaniju, brend, novi proizvod. Napišemo korporativni slogan i ključne promo poruke. Dizajniramo vizuelni identitet, od logoa i znaka, do kompletne primene definisane kroz Knjigu grafičkih standarda. Kreiramo pakovanja za sve proizvode. Brendiramo maloprodajne objekte, vozila, upravne zgrade, vaš lični imidž — zaokruženi vizuelni identitet je prva determinanta poslovnog i tržišnog identiteta kompanije.",
+        text: "Naš rad počinje osmišljavanjem imena... za kompaniju, brend, novi proizvod. Nastavlja se korporativnim sloganom i ključnim promo porukama. Nakon toga dizajniramo vizuelni identitet, od logoa i znaka, do kompletne primene definisane kroz „Knjigu Grafičkih Standarda“. Kreativni proces se nastavlja — dizajnom pakovanja za proizvode, brendiranjem maloprodajnih objekata, vozila, upravne zgrade, ličnog imidža direktora — zaokruženi vizuelni identitet je prva determinanta poslovnog i tržišnog identiteta kompanije.",
         image: "/images/services/graficki-dizajn/vizuelni-identitet.jpg",
         imageAlt: "Vizuelni identitet kompanije — logo, Knjiga grafičkih standarda i brendiranje objekata, Advercity agencija Niš",
+        caption: "NTP Niš",
       },
       {
         title: "Logo",
-        text: "Slovni ispis imena kompanije ili proizvoda (logotip) zajedno sa grafičkim znakom (ili nekad bez njega) predstavlja osnovni potpis vašeg brenda, pandan svojeručnom potpisu. Jedan pogled na logo koji dizajniramo govori više od hiljadu reči, šalje poruku i ostavlja pečat prepoznatljivosti koji će trajati dugo.",
+        text: "Slovni ispis imena kompanije ili proizvoda (logotip) zajedno sa grafičkim znakom (ili nekad bez njega) predstavlja osnovni potpis vašeg brenda, pandan svojeručnom potpisu. Jedan pogled na logo koji ćemo mi dizajnirati govori više od hiljadu reči, šalje poruku i ostavlja pečat prepoznatljivosti koji će trajati dugo.",
         image: "/images/services/graficki-dizajn/logo.jpg",
         imageAlt: "Dizajn logotipa i grafičkog znaka za kompaniju — grafički dizajn Advercity Niš",
+        caption: "Rezidencijalni stambeni kompleks Bekatown Aranđelovac (Bekament)",
         reverse: true,
       },
       {
         title: "Pakovanja",
-        text: "Dizajniramo lepa, prepoznatljiva, moderna, upečatljiva, unificirana, jedinstvena pakovanja proizvoda u industriji hrane, kozmetike, farmacije. Pakovanje štiti vaš proizvod do momenta konzumacije, ali pre svega vizuelno mami kupce da baš njega odaberu i nekada primarno utiče na prodaju. Po njemu brendovi postaju prepoznatljivi, prate trendove u branši, diferenciraju se od konkurencije.",
+        text: "Adver City kreativni tim na osnovu ciljnih grupa, karaktera proizvoda i prodajnih targeta dizajnira adekvatna, lepa, prepoznatljiva, moderna, upečatljiva, unificirana, jedinstvena pakovanja proizvoda u industriji hrane, kozmetike, farmacije. Pakovanje štiti vaš proizvod do momenta konzumacije, ali pre svega vizuelno mami kupce da baš njega odaberu i nekada primarno utiče na prodaju. Po njemu brendovi postaju prepoznatljivi, prate trendove u branši, diferenciraju se od konkurencije.",
         image: "/images/services/graficki-dizajn/pakovanja.jpg",
         imageAlt: "Dizajn pakovanja proizvoda za hranu, kozmetiku i farmaciju — Advercity graficki dizajn Nis",
+        caption: "Mlekara Milk House",
       },
       {
         title: "Dizajn kampanja za sve medijske kanale",
-        text: "Kreiramo kompletne kreativne koncepte za plasiranje reklamnih kampanja na svim kanalima komunikacija kroz različite medije, od društvenih mreža i web sajtova, preko štampe, OOH oglašavanja na bilbordima i LED ekranima, televizije, radija, direct i POS marketinga.",
+        text: "Kompletni kreativni koncepti za plasiranje reklamnih kampanja na svim kanalima komunikacija kroz različite medije, od društvenih mreža i web sajtova, preko štampe, OOH oglašavanja na bilbordima i LED ekranima, televizije, radija, direct i POS marketinga. Kampanje koje mi plasiramo su definisane strategijom i medijskim miksom, osmišljene da probude pažnju, budu upamćene, probude želju za kupovinom i motivišu potrošače.",
         image: "/images/services/graficki-dizajn/kampanje-svi-kanali.jpg",
         imageAlt: "Dizajn reklamnih kampanja za sve medijske kanale — štampa, digital, OOH, TV, Advercity Niš",
+        caption: "Kampanja AIK Banka",
         reverse: true,
       },
       {
         title: "Dizajn kampanja za digitalni marketing",
-        text: "Dizajniramo postove, banere, snimamo reels formate, za realizaciju kampanja na društvenim mrežama (Instagram, Facebook, TikTok, LinkedIn) i na Google Ads-u.",
+        text: "Osmisliti kontent je prvi i veoma značajan zadatak koji se u našem radu ogleda u dizajnu postova, banera, snimanju reels formata... za realizaciju kampanja na Meta i Google kanalima.",
         image: "/images/services/graficki-dizajn/digitalni-marketing.jpg",
         imageAlt: "Dizajn postova i banera za Instagram, Facebook, TikTok i Google Ads — Advercity digitalni marketing Niš",
+        caption: "Shopping mall Delta Planet",
       },
       {
-        title: "Dizajn kampanja za outdoor oglasavanje",
+        title: "Kampanje za outdoor oglašavanje",
         text: "Dizajniramo postere za billboard, city light, LED i big formats panoe. Planiramo i realizujemo kampanje na mreži reklamnih panoa u vlasništvu naše agencije, kao i kroz partnerske mreže na teritoriji cele zemlje.",
         image: "/images/services/graficki-dizajn/outdoor.jpg",
         imageAlt: "Dizajn za outdoor oglašavanje — billboard, city light, LED i big format panoi, Advercity Niš",
+        caption: "Poslastičara MELT",
         reverse: true,
       },
       {
@@ -337,6 +347,7 @@ export const SERVICE_PAGES: ServicePage[] = [
         text: "Vobleri, posteri svih formata, roll up panoi, promo pultovi, višilice, samostalne market police, pokloni za terenske promocije, uniforme — radimo zajedno sa BTL timovima naših klijenata na marketing kampanjama na prodajnim mestima.",
         image: "/images/services/graficki-dizajn/pos-marketing.jpg",
         imageAlt: "POS marketing materijali — vobleri, roll up panoi, promo pultovi i posteri, Advercity Niš",
+        caption: "Pekare Žitopek (Don Don)",
       },
     ],
     features: [
