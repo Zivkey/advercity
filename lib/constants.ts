@@ -54,6 +54,7 @@ export const SERVICES = [
   },
   {
     title: "Marketing na društvenim mrežama",
+    navLabel: "Društvene mreže",
     slug: "social-media-marketing",
     icon: "Share2" as const,
     description:
@@ -61,6 +62,7 @@ export const SERVICES = [
   },
   {
     title: "Google oglašavanje",
+    navLabel: "Google Ads",
     slug: "google-ads",
     icon: "Target" as const,
     description:
@@ -75,6 +77,7 @@ export const SERVICES = [
   },
   {
     title: "Bilbordi / LED ekrani",
+    navLabel: "Bilbordi i LED",
     slug: "ooh-oglasavanje",
     icon: "MapPin" as const,
     description:
@@ -82,6 +85,7 @@ export const SERVICES = [
   },
   {
     title: "Organizacija događaja",
+    navLabel: "Događaji",
     slug: "event-marketing",
     icon: "Calendar" as const,
     description:
@@ -96,6 +100,7 @@ export const SERVICES = [
   },
   {
     title: "Foto i video produkcija",
+    navLabel: "Foto i video",
     slug: "foto-i-video-produkcija",
     icon: "Camera" as const,
     description:
@@ -127,7 +132,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Usluge",
     href: "/#usluge",
     children: SERVICES.map((s) => ({
-      label: s.title,
+      label: ("navLabel" in s ? s.navLabel : undefined) ?? s.title,
       href: `/usluge/${s.slug}/`,
     })),
   },

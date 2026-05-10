@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { NAV_ITEMS, CONTACT } from "@/lib/constants";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/lib/constants";
 
@@ -24,8 +24,11 @@ function getIsActive(item: NavItem, pathname: string): boolean {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [headerInMenuMode, setHeaderInMenuMode] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [drilldown, setDrilldown] = useState<string | null>(null);
+  const [drilldownItemsVisible, setDrilldownItemsVisible] = useState(false);
+  const [renderedDrilldown, setRenderedDrilldown] = useState<NavItem | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -37,12 +40,34 @@ export default function Header() {
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
+      setHeaderInMenuMode(true);
     } else {
       document.body.style.overflow = "";
-      setMobileDropdown(null);
+      setDrilldown(null);
+      const t = setTimeout(() => setHeaderInMenuMode(false), 220);
+      return () => {
+        clearTimeout(t);
+        document.body.style.overflow = "";
+      };
     }
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    if (drilldown) {
+      const item = NAV_ITEMS.find((i) => i.label === drilldown);
+      if (item) setRenderedDrilldown(item);
+      setDrilldownItemsVisible(true);
+    } else {
+      const t = setTimeout(() => setDrilldownItemsVisible(false), 460);
+      return () => clearTimeout(t);
+    }
+  }, [drilldown]);
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setDrilldown(null);
+  };
 
   return (
     <>
@@ -53,7 +78,7 @@ export default function Header() {
       <header
         className={cn(
           "fixed left-0 right-0 top-0 transition-all duration-300",
-          mobileOpen
+          headerInMenuMode
             ? "z-[70] bg-transparent shadow-none"
             : scrolled
             ? "z-50 bg-white shadow-sm"
@@ -62,9 +87,24 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
           {/* Logo — hidden when mobile menu is open */}
-          <Link href="/" className={cn("transition-opacity duration-300", mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100")}>
-            <Image src="/images/logo.svg" alt="Advercity" width={200} height={45} priority />
-          </Link>
+          <div className="relative">
+            <Link href="/" className={cn("block transition-opacity duration-300", headerInMenuMode ? "opacity-0 pointer-events-none" : "opacity-100")}>
+              <Image src="/images/logo.svg" alt="Advercity" width={200} height={45} priority />
+            </Link>
+            {/* Mobile back button — appears when drilldown is open */}
+            <button
+              onClick={() => setDrilldown(null)}
+              className={cn(
+                "absolute left-0 top-1/2 flex h-8 -translate-y-1/2 items-center gap-1.5 transition-opacity duration-200 lg:hidden",
+                drilldown ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+              )}
+              aria-label="Nazad na glavni meni"
+              tabIndex={drilldown ? 0 : -1}
+            >
+              <ChevronLeft className="h-7 w-7 text-white" strokeWidth={2.25} />
+              <span className="text-xl font-medium text-white">Nazad</span>
+            </button>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Glavna navigacija">
@@ -152,15 +192,18 @@ export default function Header() {
           >
             <span className={cn(
               "absolute left-0 h-0.5 w-full origin-center transition-all duration-300",
-              mobileOpen ? "top-[8px] translate-y-[7px] rotate-45 bg-white" : "top-[8px] bg-dark"
+              mobileOpen ? "top-[8px] translate-y-[7px] rotate-45" : "top-[8px]",
+              headerInMenuMode ? "bg-white" : "bg-dark"
             )} />
             <span className={cn(
               "absolute left-0 top-[15px] h-0.5 w-full transition-all duration-300",
-              mobileOpen ? "scale-x-0 opacity-0 bg-white" : "bg-dark"
+              mobileOpen ? "scale-x-0 opacity-0" : "",
+              headerInMenuMode ? "bg-white" : "bg-dark"
             )} />
             <span className={cn(
               "absolute left-0 h-0.5 w-full origin-center transition-all duration-300",
-              mobileOpen ? "top-[22px] -translate-y-[7px] -rotate-45 bg-white" : "top-[22px] bg-dark"
+              mobileOpen ? "top-[22px] -translate-y-[7px] -rotate-45" : "top-[22px]",
+              headerInMenuMode ? "bg-white" : "bg-dark"
             )} />
           </button>
         </div>
@@ -169,113 +212,147 @@ export default function Header() {
       {/* Mobile overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] bg-primary",
+          "fixed inset-0 z-[60] overflow-hidden bg-primary",
           "transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]",
           mobileOpen
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-full opacity-0 pointer-events-none"
         )}
       >
-        {/* Nav items */}
-        <nav
-          className="flex h-full flex-col items-center justify-center gap-3"
-          aria-label="Mobilna navigacija"
+        {/* Main panel */}
+        <div
+          className={cn(
+            "absolute inset-0 transition-transform duration-[450ms] ease-[cubic-bezier(0.76,0,0.24,1)]",
+            drilldown ? "-translate-x-full" : "translate-x-0"
+          )}
         >
-          {NAV_ITEMS.map((item, index) => {
-            const active = getIsActive(item, pathname);
-            return (
+          <nav
+            className="flex h-full flex-col items-center justify-center gap-3"
+            aria-label="Mobilna navigacija"
+          >
+            {NAV_ITEMS.map((item, index) => {
+              const active = getIsActive(item, pathname);
+              const visible = mobileOpen && !drilldown;
+              return (
+                <div
+                  key={item.label}
+                  className="text-center transition-all"
+                  style={{
+                    transitionDelay: visible ? `${140 + index * 55}ms` : "0ms",
+                    transitionDuration: "380ms",
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? "translateY(0)" : "translateY(20px)",
+                  }}
+                >
+                  {item.children ? (
+                    <button
+                      onClick={() => setDrilldown(item.label)}
+                      className={cn(
+                        "relative text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
+                        active ? "text-white" : "text-white/60"
+                      )}
+                    >
+                      {item.label}
+                      <ChevronRight
+                        className="absolute top-1/2 left-[calc(100%+10px)] h-6 w-6 -translate-y-1/2"
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={closeMobile}
+                      className={cn(
+                        "text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
+                        active ? "text-white" : "text-white/60"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+
+          {/* Phone at bottom */}
+          <div
+            className="absolute bottom-10 left-0 right-0 text-center transition-all"
+            style={{
+              transitionDelay:
+                mobileOpen && !drilldown ? `${140 + NAV_ITEMS.length * 55}ms` : "0ms",
+              transitionDuration: "380ms",
+              opacity: mobileOpen && !drilldown ? 1 : 0,
+              transform:
+                mobileOpen && !drilldown ? "translateY(0)" : "translateY(16px)",
+            }}
+          >
+            <a
+              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
+              className="text-xl font-bold text-white/80"
+            >
+              {CONTACT.phone}
+            </a>
+          </div>
+        </div>
+
+        {/* Drilldown panel */}
+        <div
+          className={cn(
+            "absolute inset-0 transition-transform duration-[450ms] ease-[cubic-bezier(0.76,0,0.24,1)]",
+            drilldown ? "translate-x-0" : "translate-x-full"
+          )}
+          aria-hidden={!drilldown}
+        >
+          {renderedDrilldown && (
+            <nav
+              className="flex h-full flex-col items-center justify-center gap-4 px-6"
+              aria-label={renderedDrilldown.label}
+            >
               <div
-                key={item.label}
-                className="text-center transition-all"
+                className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-white/40 transition-all"
                 style={{
-                  transitionDelay: mobileOpen ? `${140 + index * 55}ms` : "0ms",
-                  transitionDuration: "380ms",
-                  opacity: mobileOpen ? 1 : 0,
-                  transform: mobileOpen ? "translateY(0)" : "translateY(20px)",
+                  transitionDelay: drilldownItemsVisible ? "120ms" : "0ms",
+                  transitionDuration: "320ms",
+                  opacity: drilldownItemsVisible ? 1 : 0,
+                  transform: drilldownItemsVisible ? "translateY(0)" : "translateY(12px)",
                 }}
               >
-                {item.children ? (
-                  <button
-                    onClick={() =>
-                      setMobileDropdown(mobileDropdown === item.label ? null : item.label)
-                    }
-                    className={cn(
-                      "relative text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
-                      active ? "text-white" : "text-white/60"
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={cn(
-                        "absolute top-1/2 -translate-y-1/2 h-6 w-6 transition-transform duration-300",
-                        "left-[calc(100%+10px)]",
-                        mobileDropdown === item.label ? "rotate-180" : ""
-                      )}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      "text-4xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-5xl",
-                      active ? "text-white" : "text-white/60"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                )}
-
-                {/* Mobile submenu */}
-                {item.children && (
-                  <div
-                    className={cn(
-                      "overflow-hidden transition-all duration-300 ease-in-out",
-                      mobileDropdown === item.label ? "mt-3 max-h-96" : "max-h-0"
-                    )}
-                  >
-                    <div className="flex flex-col gap-2">
-                      {item.children.map((child) => {
-                        const childBase = child.href.split("#")[0].replace(/\/$/, "");
-                        const childActive = childBase !== "" && pathname.startsWith(childBase);
-                        return (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => setMobileOpen(false)}
-                            className={cn(
-                              "text-lg transition-opacity hover:text-white",
-                              childActive ? "font-semibold text-white" : "text-white/55"
-                            )}
-                          >
-                            {child.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
+                {renderedDrilldown.label}
               </div>
-            );
-          })}
-        </nav>
-
-        {/* Phone at bottom */}
-        <div
-          className="absolute bottom-10 left-0 right-0 text-center transition-all"
-          style={{
-            transitionDelay: mobileOpen ? `${140 + NAV_ITEMS.length * 55}ms` : "0ms",
-            transitionDuration: "380ms",
-            opacity: mobileOpen ? 1 : 0,
-            transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
-          }}
-        >
-          <a
-            href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
-            className="text-xl font-bold text-white/80"
-          >
-            {CONTACT.phone}
-          </a>
+              {renderedDrilldown.children?.map((child, index) => {
+                const childBase = child.href.split("#")[0].replace(/\/$/, "");
+                const childActive =
+                  childBase !== "" && pathname.startsWith(childBase);
+                return (
+                  <div
+                    key={child.href}
+                    className="text-center transition-all"
+                    style={{
+                      transitionDelay: drilldownItemsVisible
+                        ? `${180 + index * 35}ms`
+                        : "0ms",
+                      transitionDuration: "340ms",
+                      opacity: drilldownItemsVisible ? 1 : 0,
+                      transform: drilldownItemsVisible
+                        ? "translateY(0)"
+                        : "translateY(16px)",
+                    }}
+                  >
+                    <Link
+                      href={child.href}
+                      onClick={closeMobile}
+                      className={cn(
+                        "text-3xl font-display font-light tracking-[-0.04em] transition-opacity hover:opacity-80 sm:text-4xl",
+                        childActive ? "text-white" : "text-white/65"
+                      )}
+                    >
+                      {child.label}
+                    </Link>
+                  </div>
+                );
+              })}
+            </nav>
+          )}
         </div>
       </div>
     </>
